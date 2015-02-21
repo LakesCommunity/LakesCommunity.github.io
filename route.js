@@ -8,15 +8,15 @@
         function ($routeProvider) {
             $routeProvider.
                 when('/checkin', {
-                    templateUrl: 'checkin/views/checkin.html'
+                    templateUrl: 'app/checkin/views/checkin.html'
                     //controller: 'DiscountListCtrl'
                 }).
-                //when('/admin', {
-                //    templateUrl: 'admin/views/detail.html'
-                //    controller: 'DiscountDetailCtrl'
-                //}).
+                when('/admin', {
+                    templateUrl: 'app/admin/views/admin.html'
+                    //controller: 'DiscountDetailCtrl'
+                }).
                 otherwise({
-                    redirectTo: '/'
+                    redirectTo: '/checkin'
                 });
         }]);
     /**
