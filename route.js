@@ -8,11 +8,11 @@
         function ($routeProvider) {
             $routeProvider.
                 when('/checkin', {
-                    templateUrl: 'app/checkin/views/checkin.html'
+                    templateUrl: 'test2.html'
                     //controller: 'DiscountListCtrl'
                 }).
                 when('/admin', {
-                    templateUrl: 'app/admin/views/admin.html'
+                    templateUrl: 'test.html'
                     //controller: 'DiscountDetailCtrl'
                 }).
                 otherwise({
