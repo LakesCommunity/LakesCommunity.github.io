@@ -1,7 +1,7 @@
 var app = angular.module('kidscheckin', ['ngDragDrop','ui.bootstrap']);
 
 app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
-
+  $scope.check = true;
   $scope.page = "CheckIn";
 
   $scope.UpdatePage = function(v){
@@ -18,7 +18,7 @@ app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
   };
 
 
-  $scope.empty = "Empty";
+  $scope.empty = "";
 
   $scope.add = function(v) {
 	$scope.men.push(v);
@@ -81,7 +81,7 @@ app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
 
     $scope.states = [];
     $http.get('Family.json').success(function (data){
-        $scope.states = data;
+        $scope.states = response.data.map(data);
     }).error(function(data){
         alert("Fail");
     });
