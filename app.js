@@ -4,6 +4,12 @@ app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
   $scope.check = true;
   $scope.page = "CheckIn";
 
+    $http.get('Family.json').success(function (data){
+        $scope.family = data;
+    }).error(function(data){
+        alert("Fail");
+    });
+
   $scope.UpdatePage = function(v){
       if($scope.page === "Admin"){
           $scope.admin = true;
@@ -21,6 +27,12 @@ app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
   $scope.empty = "";
 
   $scope.add = function(v) {
+    var fam = $scope.family;
+    for(var i = 0; i < fam.length; i++){
+        if (fam[i].family === v){
+            v = fam[i].children;
+        }
+    }
 	$scope.men.push(v);
 	$scope.newname = null;
   };
@@ -81,7 +93,9 @@ app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
 
     $scope.states = [];
     $http.get('Family.json').success(function (data){
-        $scope.states = response.data.map(data);
+        $scope.states = data.map(function (item) {
+            return item.family;
+        });
     }).error(function(data){
         alert("Fail");
     });
