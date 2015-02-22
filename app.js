@@ -2,6 +2,22 @@ var app = angular.module('kidscheckin', ['ngDragDrop','ui.bootstrap']);
 
 app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
 
+  $scope.page = "CheckIn";
+
+  $scope.UpdatePage = function(v){
+      if($scope.page === "Admin"){
+          $scope.admin = true;
+          $scope.check = false;
+          $scope.page = "CheckIn";
+      }else if($scope.page === "CheckIn"){
+          $scope.admin = false;
+          $scope.check = true;
+          $scope.page = "Admin";
+
+      }
+  };
+
+
   $scope.empty = "Empty";
 
   $scope.add = function(v) {
