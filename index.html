@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <title>Testing</title>
+    <title>Kids Check In</title>
     <link rel="stylesheet" href="style.css" />
 	  <link rel="stylesheet" href="css/bootstrap.min.css" />
   	<script src="js/angular.js"></script>
@@ -24,49 +24,54 @@
 	<button class="btn btn-primary" ng-click="add(newname)">add new name </button>
 	<h4>Static arrays</h4>
     <pre>Model: {{selected | json}}</pre>
-    <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
+		<div ng-show="true">
+			HELLO
+		</div>
+		<div ng-show="false">
+			<input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
 
-        <div class="row topRow">
-            <h4 class="heading">
-                Drag and drop between the two lists.
-            </h4>
-        </div>
-		<div class="col-xs-6 check-in-one">
-		<h2>Check-In</h2>
-			<ul ui-on-Drop="onDrop($event,$data,people)">
-				<li ui-draggable="true" drag="mans"
-				on-drop-success="dropSuccessHandler($event,$index,people)"
-				ng-repeat="mans in people track by $index"><input class="form-control" ng-model="mans" />
-					<button class="btn btn-primary" data-ng-click="move_one(mans,$index)">Move</button>
-					<button <button class="btn btn-danger"data-ng-click="remove(1,$index)">Remove</button>
-				</li>
-			</ul>
-		</div>
-		<div class="col-xs-6 check-in">
-		<h2>Check-In</h2>
-			<ul ui-on-Drop="onDrop($event,$data,men)">
-				<li ui-draggable="true" drag="man"
-				on-drop-success="dropSuccessHandler($event,$index,men)"
-				ng-repeat="man in men track by $index"><input class="form-control"  ng-model="man" />
-					<button class="btn btn-primary" data-ng-click="move(man,$index)">Move</button>
-					<button class="btn btn-danger" data-ng-click="remove(1,$index)">Remove</button>
-				</li>
-			</ul>
-		</div>
-		<div class="col-xs-6 check-out">
-		<h2>PickUp</h2>
-			<ul ui-on-Drop="onDrop($event,$data,women)">
-			<div ng-show="empty">Empty</div>
-				<li ui-draggable="true" drag="woman"
-				on-drop-success="dropSuccessHandler($event,$index,women)"
-				ng-repeat="woman in women track by $index">
+			<div class="row topRow">
+				<h4 class="heading">
+					Drag and drop between the two lists.
+				</h4>
+			</div>
+			<div class="col-xs-6 check-in-one">
+			<h2>Check-In</h2>
+				<ul ui-on-Drop="onDrop($event,$data,people)">
+					<li ui-draggable="true" drag="mans"
+					on-drop-success="dropSuccessHandler($event,$index,people)"
+					ng-repeat="mans in people track by $index"><input class="form-control" ng-model="mans" />
+						<button class="btn btn-primary" data-ng-click="move_one(mans,$index)">Move</button>
+						<button <button class="btn btn-danger"data-ng-click="remove(1,$index)">Remove</button>
+					</li>
+				</ul>
+			</div>
+			<div class="col-xs-6 check-in">
+			<h2>Check-In</h2>
+				<ul ui-on-Drop="onDrop($event,$data,men)">
+					<li ui-draggable="true" drag="man"
+					on-drop-success="dropSuccessHandler($event,$index,men)"
+					ng-repeat="man in men track by $index"><input class="form-control"  ng-model="man" />
+						<button class="btn btn-primary" data-ng-click="move(man,$index)">Move</button>
+						<button class="btn btn-danger" data-ng-click="remove(1,$index)">Remove</button>
+					</li>
+				</ul>
+			</div>
+			<div class="col-xs-6 check-out">
+			<h2>PickUp</h2>
+				<ul ui-on-Drop="onDrop($event,$data,women)">
+				<div ng-show="empty">Empty</div>
+					<li ui-draggable="true" drag="woman"
+					on-drop-success="dropSuccessHandler($event,$index,women)"
+					ng-repeat="woman in women track by $index">
 
-					<input ng-show="woman" style="font-size:75px" ng-model="woman" />
-					<button ng-click="remove(2,$index)">Remove</button>
-				</li>
-			</ul>
-		</div>
-    </div>
+						<input ng-show="woman" style="font-size:75px" ng-model="woman" />
+						<button ng-click="remove(2,$index)">Remove</button>
+					</li>
+				</ul>
+			</div>
+    	</div>
+	</div>
   </body>
 
 </html>
