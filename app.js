@@ -4,11 +4,11 @@ app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
     $scope.check = true;
     $scope.page = "CheckIn";
 
-    //$.getJSON("Family.json", function( data ) {
-    //    $scope.family = data;
-    //}).error(function (data){
-    //
-    //});
+    $.getJSON("Family.json", function( data ) {
+        $scope.family = data;
+    }).error(function (data){
+
+    });
     $scope.family = "";
 
     $scope.empty = "";
