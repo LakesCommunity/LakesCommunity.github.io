@@ -1,113 +1,80 @@
-var app = angular.module('kidscheckin', ['ngDragDrop','ui.bootstrap']);
+var app = angular.module('kidscheckin', ['ui.bootstrap']);
 
 app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
-  $scope.check = true;
-  $scope.page = "CheckIn";
+    $scope.check = true;
+    $scope.page = "CheckIn";
 
-    $http.get('Family.json').success(function (data){
-        $scope.family = data;
-    }).error(function(data){
-        alert("Fail");
-    });
+    //$.getJSON("Family.json", function( data ) {
+    //    $scope.family = data;
+    //}).error(function (data){
+    //
+    //});
+    $scope.family = "";
 
-  $scope.UpdatePage = function(v){
-      if($scope.page === "Admin"){
-          $scope.admin = true;
-          $scope.check = false;
-          $scope.page = "CheckIn";
-      }else if($scope.page === "CheckIn"){
-          $scope.admin = false;
-          $scope.check = true;
-          $scope.page = "Admin";
+    $scope.empty = "";
 
-      }
-  };
-
-
-  $scope.empty = "";
-
-  $scope.add = function(v) {
-    var fam = $scope.family;
-    for(var i = 0; i < fam.length; i++){
-        if (fam[i].family === v){
-            v = fam[i].children;
+      $scope.add = function(v) {
+        var fam = $scope.family;
+        for(var i = 0; i < fam.length; i++){
+            if (fam[i].family === v){
+                v = fam[i].children;
+            }
         }
-    }
-	$scope.men.push(v);
-	$scope.newname = null;
-  };
-
-   $scope.remove = function (num,v) {
-    if($scope.women.length === 1){
-      $scope.empty = true;
-    }
-		if(num === 1){
-			$scope.men.splice(v,1);
-		}else if(num === 2){
-			$scope.women.splice(v,1);
-		}
-  };
-  $scope.move = function (man,v){
-		$scope.women.push(man);
-		$scope.men.splice(v,1);
-  };
-  $scope.move_one = function (man,v){
-	$scope.men.push(man);
-	$scope.people.splice(v,1);
-  };
-
-  $scope.transfer = function ($event,index,array){
-      array.push($data);
-  };
-
-  $scope.people = [
-		'John',
-      'Jack',
-      'Mark',
-      'Ernie'
-  ];
-
-  $scope.men = [
-      'John',
-      'Jack',
-      'Mark',
-      'Ernie'
-      ];
-      
-	$scope.women = [
-      ];
-
-      $scope.addText = "";
-
-
-      $scope.dropSuccessHandler = function($event,index,array){
-          array.splice(index,1);
-
+        $scope.men.push(v);
+        $scope.newname = null;
       };
 
-      $scope.onDrop = function($event,$data,array){
+       $scope.remove = function (num,v) {
+        if($scope.women.length === 1){
+          $scope.empty = true;
+        }
+            if(num === 1){
+                $scope.men.splice(v,1);
+            }else if(num === 2){
+                $scope.women.splice(v,1);
+            }
+      };
+      $scope.move = function (man,v){
+            $scope.women.push(man);
+            $scope.men.splice(v,1);
+      };
+      $scope.move_one = function (man,v){
+        $scope.men.push(man);
+        $scope.people.splice(v,1);
+      };
+
+      $scope.transfer = function ($event,index,array){
           array.push($data);
-          $scope.empty = false;
       };
-     $scope.selected = undefined;
 
-    $scope.states = [];
-    $http.get('Family.json').success(function (data){
-        $scope.states = data.map(function (item) {
-            return item.family;
+      $scope.people = [
+      ];
+
+      $scope.men = [
+          ];
+
+        $scope.women = [
+          ];
+
+          $scope.addText = "";
+
+
+          $scope.dropSuccessHandler = function($event,index,array){
+              array.splice(index,1);
+
+          };
+
+          $scope.onDrop = function($event,$data,array){
+              array.push($data);
+              $scope.empty = false;
+          };
+         $scope.selected = undefined;
+
+        $.getJSON("Family.json", function( data ) {
+            $scope.states = data.map(function (item) {
+                return item.family;
+            });
+        }).error(function (data){
+
         });
-    }).error(function(data){
-        alert("Fail");
-    });
-
-	 //$scope.states = [
-      //   'Alabama',
-      //   'Alaska',
-      //   'Arizona',
-      //   'Arkansas',
-      //   'California',
-      //   'Colorado',
-      //   'Connecticut',
-      //   'Delaware',
-      //   'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 }]);

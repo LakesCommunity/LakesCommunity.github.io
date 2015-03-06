@@ -1,13 +1,25 @@
 /* Put your css in here */
+body {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
 .check_in_btn{
 	width:80%;
 }
 .check-in{
+	height: 400px;
+	float: left;
+	overflow:auto;
+	width: 25%;
 	height: 900px;
 	border-right: 2px solid black;
 	border-top: 2px solid black;
 }
 .check-out{
+	height: 700px;
+	float: right;
+	width: 75%;
 	border-top: 2px solid black;
 }
 /*body{*/
