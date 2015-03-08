@@ -1,6 +1,59 @@
 var app = angular.module('kidscheckin', ['ui.bootstrap']);
 
 app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
+
+
+
+    // admin portion
+    $scope.refresh = function(){
+
+    };
+
+    $scope.removeFam = function(x,v){
+      $scope.people.splice(v,1);
+    };
+
+    $scope.getPeople = function() {
+        $.getJSON("Family.json", function (data) {
+            $scope.people = data;
+        }).error(function (data) {
+            alert();
+        });
+        $scope.predicate = 'family';
+    };
+    $scope.newFamily = null;
+    $scope.addNew = function(fam,child) {
+        var family =
+            {
+                "family" : fam,
+                "children" : child
+            };
+
+        $scope.people.push(family);
+    };
+
+    $scope.save = function(fam){
+        $scope.data = fam;
+        var data = $scope.data;
+        var json = JSON.stringify(data);
+        var blob = new Blob([json], {type: "application/json"});
+        var url  = URL.createObjectURL(blob);
+
+        var a = document.createElement('a');
+        a.download    = "Family.json";
+        a.href        = url;
+        a.textContent = "Save Family.json";
+
+        document.getElementById('content').appendChild(a);
+    };
+
+
+
+
+
+
+    // end admin
+
     $scope.check = true;
     $scope.page = "CheckIn";
 
@@ -47,8 +100,6 @@ app.controller('MainCtrl',['$scope','$http', function($scope, $http) {
           array.push($data);
       };
 
-      $scope.people = [
-      ];
 
       $scope.men = [
           ];

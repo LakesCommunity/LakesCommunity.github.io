@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="kidscheckin">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Kids Check In</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/angular.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.12.1.js"></script>
+    <script src="app.js"></script>
+    <script src="jquery-1.11.2.min.js"></script>
+</head>
+<body  >
+<div ng-controller="MainCtrl">
+    <br>
+    <div id="content"></div>
+    <br>
+    <button class="btn btn-primary" ng-click="refresh()">Show Familys</button>
+    <br>
+    <br>
+    <div class="form-inline">
+        <div class="form-group">
+            <label for="Family">Family</label>
+            <input id="Family" ng-focus="yes=true" class="form-control" ng-model="newFamily" />
+        </div>
+    </div>
+    <br>
+    <div ng-show="yes" class="form-inline ">
+        <div class="form-group">
+            <label for="Childs">Children</label>
+            <input  id="Childs" class="form-control" ng-model="newChild" />
+        </div>
+    </div>
+    <br>
+    <div class="form-inline">
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="addNew(newFamily,newChild)">Add New Family</button>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" ng-click="save(people)">Save</button>
+        </div>
+    </div>
+
+    <div ng-init="getPeople()">
+        <table  class="table table-striped">
+            <thead style="font-size: 140%">
+            <tr>
+                <th>Family</th>
+                <th>Children</th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tr ng-repeat="x in people | orderBy:predicate track by $index">
+                <td>{{x.family}}</td>
+                <td><input class="form-control"  ng-model="x.children" /></td>
+                <td>
+                    <button id="btnRemoveUser" class="btn btn-danger" ng-click="removeFam(x, $index)">Remove</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--<div ng-init="getPeople()">-->
+    <!--<ul>-->
+            <!--<li  ng-repeat="x in people">-->
+                <!--<div class="form-inline">-->
+                    <!--<div class="form-group">-->
+                        <!--<h2>{{x.family}} </h2>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<input class="form-control" ng-show="x.family" ng-model="x.children" />-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+
+
+
+</div>
+</body>
+
+</html>
+
+
+
